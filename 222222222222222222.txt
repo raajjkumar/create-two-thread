@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <semaphore.h>
+using namespace std;
+
+
+void * first(void *) {
+    cout<<"Welcome to the Program "<<endl;
+}
+
+void * second(void *) {
+    cout <<endl<<  "Enter first number = ";
+    int a, b, sum;
+    cin >> a;
+    cout <<"Enter second number = ";
+    cin >> b;
+    cout << "Sum of two numbers is = " << a + b << endl;
+}
+int32_t main() {
+    pthread_t thread1, thread2;
+
+    
+    
+        pthread_create( & thread1, NULL, first, NULL);
+        pthread_create( & thread2, NULL, second, NULL);
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+    cout << "Both of the threads exicuted." << endl;
+
+    return 0;
+}
